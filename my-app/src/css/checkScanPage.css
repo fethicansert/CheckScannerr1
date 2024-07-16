@@ -1,0 +1,82 @@
+
+.check-scan-page{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr 4fr;
+    gap: 10px;
+    box-shadow: none;
+    font-size: .8rem;
+    font-weight: 5 00;
+}
+
+.check-scan-page-grid-flex-box{
+    display: flex;
+    gap: 5px 0;
+    flex-direction: column;
+    height: 100%;
+}
+
+.scanner-details, 
+.check-details, 
+.check-image, 
+.scanned-checks{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.445);
+    border-radius: 4px;
+    padding: .5rem ;
+}
+
+.scanner-details{
+    height: 23%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scanner-details-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+h3{
+    font-size: .85rem;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.767);
+}
+
+.check-status-text{
+    font-weight: bold;
+    color: #015CA9;
+}
+
+
+
+.check-image{
+    height: 100%;
+}
+
+.check-details{
+    height: 77%;;
+}
+
+.scanned-checks{
+    grid-column: 1 / 3;
+    height: 100%;
+}
+
+.scan-button{
+    align-self: start;
+    padding: .4rem .7rem;
+    background: #015CA9;
+    color:white;
+    border: none;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.445);
+    border-radius: 3px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.scan-button:hover{
+    opacity: .9;
+}
+

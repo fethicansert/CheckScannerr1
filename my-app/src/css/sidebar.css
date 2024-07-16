@@ -1,0 +1,44 @@
+.side-bar{
+    background: rgb(250, 250, 250);
+    width: 20%;
+    max-width: 250px;
+    margin: .3rem;
+
+    padding: .45rem .3rem;
+
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(28, 28, 167, 0.485);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+   
+}
+
+.nav-item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 5px;
+    padding: .9rem;
+    background: rgb(212, 24, 24);
+    margin-bottom: .7rem;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.433);
+
+    cursor: pointer;
+
+    text-decoration: none;
+    color: white;
+
+    font-weight: 500;
+    font-size: .8rem;
+}
+
+.nav-item:hover {
+    opacity: .9;
+}
+
+.nav-item-text{
+    margin-left: .4rem;
+}
+
