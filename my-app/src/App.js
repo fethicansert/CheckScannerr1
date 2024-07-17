@@ -7,7 +7,7 @@ import LoginPage from "./components/page-components/LoginPage";
 import AddUserPage from "./components/page-components/AddUserPage"
 import Main from "./components/main-components/Main";
 
-import './css/checkScanPage.css'
+import './css/checkscan-page.css'
 import './css/header.css';
 import './css/sidebar.css'
 import DataManagementPage from "./components/page-components/DataManagementPage";

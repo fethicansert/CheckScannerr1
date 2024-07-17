@@ -5,7 +5,7 @@ import React from "react";
 const ScannedChecks = () =>{
     return (
         <div className="scanned-checks ">
-            ScannedChecks
+            <h3>Okunmus Çekler</h3>
         </div>
     )
 };
