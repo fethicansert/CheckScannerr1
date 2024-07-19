@@ -92,16 +92,12 @@ h3{
     margin-left: .3rem;
 }
 
-/* .check-detail-label{
-   
-} */
-
 .scanned-checks{
     grid-column: 1 / 3;
     height: 100%;
 }
 
-.scan-button{
+.check-image-button{
     align-self: start;
     padding: .4rem .7rem;
     background: #015CA9;
@@ -118,3 +114,51 @@ h3{
     opacity: .9;
 }
 
+.scanned-checks-table{
+    width: 100%;
+}
+
+.table-wrapper{
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+
+table, th, td {
+    border-collapse: collapse;
+    border: none;
+}
+
+td{
+    text-indent: 10px;
+    padding: .5rem 0;
+}
+
+th{
+    background: #0a77d0;
+    color: white;
+    padding: .45rem 0;
+    text-indent: 10px;
+    text-align: start;
+    font-weight: 600;
+    position: sticky;
+    top: 0px;
+}
+
+tr{
+    cursor: pointer;
+}
+
+tr:hover{
+    background: rgb(230,230,230);
+}
+
+.scanned-check-title{
+    margin-bottom: .5rem;
+}
+
+.check-image-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

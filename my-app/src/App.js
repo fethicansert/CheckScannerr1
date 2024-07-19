@@ -1,18 +1,19 @@
-import Container from "./components/main-components/Container";
-import Header from "./components/main-components/Header";
-import Layout from "./components/main-components/Layout";
+import Container from "./components/layout-components/Container";
+import Header from "./components/layout-components/Header";
+import Layout from "./components/layout-components/Layout";
 import { Route, Routes } from "react-router-dom";
-import CheckScanPage from "./components/page-components/CheckScanPage";
-import LoginPage from "./components/page-components/LoginPage";
-import AddUserPage from "./components/page-components/AddUserPage"
-import Main from "./components/main-components/Main";
+import CheckScanPage from "./components/checkscan-page/CheckScanPage";
+import LoginPage from "./components/login-page/LoginPage";
+import AddUserPage from "./components/adduser-page/AddUserPage"
+
 
 import './css/checkscan-page.css'
 import './css/header.css';
 import './css/sidebar.css'
-import DataManagementPage from "./components/page-components/DataManagementPage";
-import UserListPage from "./components/page-components/UserListPage";
-import LogsPage from "./components/page-components/LogsPage";
+
+import DataManagementPage from "./components/datamanagement-page/DataManagementPage";
+import UserListPage from "./components/userlist-page/UserListPage";
+import LogsPage from "./components/logs-page/LogsPage";
 
 function App() {
 
@@ -28,8 +29,6 @@ function App() {
           <Route index path="/" element={<LoginPage />} />
  
           <Route path="/layout" element={<Layout />}>
-
-            <Route index  element={<Main />}></Route>
 
             <Route path="checkscan" element={<CheckScanPage />}></Route>
 

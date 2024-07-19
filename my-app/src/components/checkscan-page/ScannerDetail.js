@@ -12,7 +12,7 @@ const ScannerDetails = ({checkScan}) =>{
 
 
             <div className="scanner-details-flex">
-                <button  onClick={checkScan} className="scan-button">Çek Oku</button>
+                <button  onClick={checkScan} className="check-image-button">Çek Oku</button>
                 <p>Çek Okuyucu Türü: <span className="check-scanner-type-text">DCC-TS240</span></p>
             </div>
             

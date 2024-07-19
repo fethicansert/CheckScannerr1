@@ -3,7 +3,11 @@ import { RotatingSquare, MagnifyingGlass } from 'react-loader-spinner'
 const CheckImage = ({ checkImage, isLoading }) => {
     return (
         <div className="check-image-container">
-            <h3>Çek Resmi</h3>
+            <div className="check-image-flex">
+                <h3>Çek Resmi</h3>
+                <button className="check-image-button">Çeki Göster</button>
+            </div>
+            
             {
                 !isLoading
                     ? <img className="check-image" src={checkImage}></img>
