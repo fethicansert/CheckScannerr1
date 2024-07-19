@@ -77,7 +77,9 @@ const CheckScanPage = () => {
 
             <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks}/>
 
-            {isCheckView && <CheckView  checkImage={currentCheck.checkImage}/>};
+            {isCheckView && <CheckView  checkImage={currentCheck.checkImage}/>}
+
+            <div className='overlay'></div>
         </main>
     );
 }
