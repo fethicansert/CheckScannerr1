@@ -4,13 +4,15 @@ import CheckDetails from "./CheckDetails";
 import CheckImage from "./checkImage/CheckImage";
 import ScannedChecks from "./scanned-checks/ScannedChecks";
 import placeHolderImage from '../../images/placeholder-image.png';
-
+import CheckView from "./checkImage/CheckView";
 
 import checkDataz from "../../data/checkdata";
 
 const CheckScanPage = () => {
 
     const checkData = checkDataz;
+    const [isCheckView, setIsCheckView] = useState(false);
+
     const [isLoading, setIsLoading] = useState(false);
 
     //okunmus cekler
@@ -28,6 +30,10 @@ const CheckScanPage = () => {
         checkAmount: '-',
         checkImage: placeHolderImage
     });
+
+    const showCheckView = () => {
+        setIsCheckView(!isCheckView);
+    }
 
     //Cek okunurmus gibi yapmasi icin fonksiyon
     const checkScan = () => {
@@ -67,9 +73,11 @@ const CheckScanPage = () => {
 
             </div>
 
-            <CheckImage isLoading={isLoading} checkImage={currentCheck.checkImage} />
+            <CheckImage isLoading={isLoading} checkImage={currentCheck.checkImage}  showCheckImage={showCheckView}/>
 
             <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks}/>
+
+            {isCheckView && <CheckView  checkImage={currentCheck.checkImage}/>};
         </main>
     );
 }

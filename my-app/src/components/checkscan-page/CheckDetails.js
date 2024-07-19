@@ -1,5 +1,5 @@
 import React from "react";
-import { RotatingSquare, MagnifyingGlass } from 'react-loader-spinner'
+import { RotatingSquare, MagnifyingGlass } from 'react-loader-spinner';
 
 const CheckDetails = ({ checksequence, routingNumber, accountNumber, checkNumber, checkAmount, isLoading }) => {
     return (
