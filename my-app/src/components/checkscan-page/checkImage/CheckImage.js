@@ -23,9 +23,9 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage }) => {
             }
 
             <div className="check-image-flex">
+                <button onClick={showCheckImage} className="check-image-button">Önceki Çek</button>
                 <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
-                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
-                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
+                <button onClick={showCheckImage} className="check-image-button">Sonraki Çek</button>
             </div>
 
         </div>

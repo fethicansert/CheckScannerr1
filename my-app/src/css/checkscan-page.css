@@ -74,7 +74,7 @@ h3{
 }
 
 .check-image{
-    max-height: 200px;
+    max-height: 280px;
     width: 100%;
 }
 
@@ -179,8 +179,9 @@ tr:hover{
 
 .check-image-flex{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 .4rem;
 }
 
 .check-view{
@@ -220,10 +221,9 @@ tr:hover{
         margin-top: .4rem;
     }
 
-    /* .check-image{
-        max-height: 250px;
-        width: 100%;
-    } */
+    .check-image{
+        max-height: 200px;
+    }
 }
 
 
