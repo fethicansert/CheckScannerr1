@@ -7,12 +7,16 @@ import placeHolderImage from '../../images/placeholder-image.png';
 import CheckView from "./checkImage/CheckView";
 
 import checkDataz from "../../data/checkdata";
+import Overlay from "./checkImage/Overlay";
 
 const CheckScanPage = () => {
 
     const checkData = checkDataz;
+
+    //CheckView in gosterilip gosterilmeyecegini belirten state
     const [isCheckView, setIsCheckView] = useState(false);
 
+    //Okunma- yuklenme isleminin tamamlanip tamamlandigi belirten state
     const [isLoading, setIsLoading] = useState(false);
 
     //okunmus cekler
@@ -21,7 +25,7 @@ const CheckScanPage = () => {
     //cek sırası
     const [checkSequnce, setCheckSqeunce] = useState(0);
 
-    //Ilk bos-õrnek cek icin data
+    //Ilk default cek icin data
     const [currentCheck, setCurrentCheck] = useState({
         checkSequnce: '-',
         routingNumber: '-',
@@ -50,8 +54,8 @@ const CheckScanPage = () => {
         }, 1000);
     };
 
+
     const setCurrentCheckFromRow = (rowCheckData) => {
-        
         setCurrentCheck(rowCheckData);
     };
 
@@ -60,8 +64,10 @@ const CheckScanPage = () => {
         <main className="check-scan-page">
 
             <div className="check-scan-page-grid-flex-box check-scan-page-grid-item">
+                {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
                 <ScannerDetails checkScan={checkScan} />
-
+                
+                {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
                 <CheckDetails
                     isLoading={isLoading}
                     checksequence={currentCheck.checkSequnce}
@@ -73,11 +79,26 @@ const CheckScanPage = () => {
 
             </div>
 
-            <CheckImage isLoading={isLoading} checkImage={currentCheck.checkImage}  showCheckImage={showCheckView}/>
+            {/* Cek resminin ortalama bir boyutta gosterildigi copmonent  */}
+            <CheckImage isLoading={isLoading} checkImage={currentCheck.checkImage} showCheckImage={showCheckView} />
 
-            <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks}/>
+            {/* Okunmus ceklerin gosterildi tablo copmonent  */}
+            <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks} />
 
-            {isCheckView && <CheckView  checkImage={currentCheck.checkImage}/>}
+
+            {/* Overlay copmonent  arka tarafi gölgelendirecek 
+                CheckView copmonent  ceki daha buyuk boyutta ekranin ortasinda gosterecek */}
+            {
+                isCheckView &&
+                <>
+                    <CheckView checkImage={currentCheck.checkImage} />
+                    <Overlay setIsCheckView={setIsCheckView} isCheckView={isCheckView} />
+                </>
+            }
+
+
+
+
         </main>
     );
 }

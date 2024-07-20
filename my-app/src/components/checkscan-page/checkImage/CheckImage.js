@@ -4,11 +4,9 @@ import { MagnifyingGlass } from 'react-loader-spinner';
 const CheckImage = ({ checkImage, isLoading, showCheckImage }) => {
     return (
         <div className="check-image-container">
-            <div className="check-image-flex">
-                <h3>Çek Resmi</h3>
-                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
-            </div>
-            
+            <h3>Çek Resmi</h3>
+
+
             {
                 !isLoading
                     ? <img className="check-image" src={checkImage}></img>
@@ -23,6 +21,12 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage }) => {
                         color="#e15b64"
                     />
             }
+
+            <div className="check-image-flex">
+                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
+                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
+                <button onClick={showCheckImage} className="check-image-button">Çeki Göster</button>
+            </div>
 
         </div>
 

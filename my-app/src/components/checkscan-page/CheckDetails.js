@@ -34,6 +34,11 @@ const CheckDetails = ({ checksequence, routingNumber, accountNumber, checkNumber
                             <span className="check-detail-text">{checkAmount}</span>
                         </div>
 
+                        <div className="check-detail-label-group">
+                            <label className="check-detail-label">Check Owner:</label>
+                            <span className="check-detail-text">Fethi Can Sert</span>
+                        </div>
+
                     </div>
                 </>
                 : <MagnifyingGlass
