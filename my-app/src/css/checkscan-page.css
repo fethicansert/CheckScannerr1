@@ -76,6 +76,7 @@ h3{
 .check-image{
     max-height: 230px;
     width: 100%;
+    margin: .3rem;
 }
 
 .check-details{
@@ -92,7 +93,14 @@ h3{
     margin-top: 1rem;
 }
 
-/* label */
+.check-detail-label-group{
+    display: flex;
+}
+
+.check-detail-label{
+    font-size: .85rem;
+    font-weight: 500;
+}
 
 
 
@@ -201,29 +209,6 @@ tr:hover{
 }
 
 
-.check-detail-label-group{
-    display: flex;
-}
-
-.check-detail-label{
-    font-size: .85rem;
-    font-weight: 500;
-}
-
-
-@media (max-width: 1000px) {
-    .check-detail-label{
-        /* font-size: .8rem;
-        font-weight: 500; */
-    }
-
-    /* .check-scan-page{
-        grid-template-rows: 4fr 5fr;
-     
-    } */
-    
-    
-}
 
 
  @keyframes appear {
