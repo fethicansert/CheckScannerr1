@@ -8,7 +8,7 @@
 .check-scan-page{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 6fr 8fr;
+    grid-template-rows: 6fr 7fr;
     gap: 10px;
     box-shadow: none;
     font-size: .8rem;
@@ -74,13 +74,8 @@ h3{
 }
 
 .check-image{
-    max-height: 280px;
+    max-height: 200px;
     width: 100%;
-<<<<<<< HEAD
-    margin: .3rem;
-=======
-    margin:  0 auto;
->>>>>>> 5eb9c823608836430340f9f74a8d175cf4e06b78
 }
 
 .check-details{
@@ -94,22 +89,19 @@ h3{
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
 .check-detail-label-group{
     display: flex;
 }
-<<<<<<< HEAD
+
 
 .check-detail-label{
     font-size: .85rem;
     font-weight: 500;
 }
 
-
-=======
->>>>>>> 5eb9c823608836430340f9f74a8d175cf4e06b78
 
 .check-detail-label{
     font-size: .85rem;
@@ -220,20 +212,20 @@ tr:hover{
 }
 
 
-<<<<<<< HEAD
-=======
 
 
 @media (max-width: 1000px) {
+
     .check-detail-labels-container{
-       
         margin-top: .4rem;
     }
-    
-    
-    
+
+    /* .check-image{
+        max-height: 250px;
+        width: 100%;
+    } */
 }
->>>>>>> 5eb9c823608836430340f9f74a8d175cf4e06b78
+
 
 
  @keyframes appear {
