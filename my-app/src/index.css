@@ -8,6 +8,7 @@
 
 body{
     font-family: "Montserrat", sans-serif;
+    min-width: 900px;
 }
 
 .container{
@@ -20,7 +21,6 @@ body{
     display: flex;
     height: 100%;
     margin: .3rem;
-    min-width: 800px;
 }
 
 main{
@@ -33,7 +33,6 @@ main{
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
-    min-height: 600px;
 }
 
 
