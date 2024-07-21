@@ -13,6 +13,7 @@ const CheckScanPage = () => {
 
     const checkData = checkDataz;
 
+    //Tablo daki indexi tutabilmek currentIndex degeri
     const [currentIndex, setCurrentIndex] = useState(0)
 
     //CheckView in gosterilip gosterilmeyecegini belirten state
@@ -34,14 +35,30 @@ const CheckScanPage = () => {
         accountNumber: '-',
         checkNumber: '-',
         checkAmount: '-',
-        checkImage: placeHolderImage
+        checkImage: placeHolderImage,
+        isActive: false
     });
 
+    ///current check degistiginde currentIndex de degisecek
     useEffect(() => {
         setCurrentIndex(currentCheck.checkSequnce - 1);
-    },[currentCheck])
+    }, [currentCheck])
 
-   
+    //current check degistiginde current check isActive true geri kalanlar false olacak
+    useEffect(() => {
+        const updatedChecks = scannedChecks.map(check => {
+            if (check.checkSequnce === currentCheck.checkSequnce) {
+                check.isActive = true
+            } else {
+                check.isActive = false
+            }
+            return check;
+        });
+
+        setScannedChecks(updatedChecks);
+
+    }, [currentCheck]);
+
     const showCheckView = () => {
         setIsCheckView(!isCheckView);
     }
@@ -49,11 +66,11 @@ const CheckScanPage = () => {
     //Cek okunurmus gibi yapmasi icin fonksiyon
     const checkScan = () => {
         const randomNum = Math.floor(Math.random() * 4);
-        const newCurrentCheck = { ...checkData[randomNum], checkSequnce: checkSequnce + 1 };
+        const newCurrentCheck = { ...checkData[randomNum], checkSequnce: checkSequnce + 1, isActive: false };
 
         setIsLoading(true); //isLoading true yukleme islemi baslatildi spinner-loading goster
 
-        
+
         setTimeout(() => {  //spinner-loading 2500ms gozukmesi icin isLoading degerini 2500ms sonra false yap
             setCheckSqeunce(checkSequnce + 1); //cek sirasi arttir
             setCurrentCheck(newCurrentCheck); //data ya check sqeunce properitsi ekle
@@ -74,8 +91,8 @@ const CheckScanPage = () => {
 
             <div className="check-scan-page-grid-flex-box check-scan-page-grid-item">
                 {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
-                <ScannerDetails checkScan={checkScan} />
-                
+                <ScannerDetails checkScan={checkScan} scannedCheckCount={checkSequnce} />
+
                 {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
                 <CheckDetails
                     isLoading={isLoading}
@@ -89,14 +106,14 @@ const CheckScanPage = () => {
             </div>
 
             {/* Cek resminin ortalama bir boyutta gosterildigi copmonent  */}
-            <CheckImage 
-                isLoading={isLoading} 
-                checkImage={currentCheck.checkImage} 
-                showCheckImage={showCheckView} 
-                setCurrentCheck={setCurrentCheck} 
+            <CheckImage
+                isLoading={isLoading}
+                checkImage={currentCheck.checkImage}
+                showCheckImage={showCheckView}
+                setCurrentCheck={setCurrentCheck}
                 scannedChecks={scannedChecks}
                 checkIndex={currentIndex}
-            /> 
+            />
 
             {/* Okunmus ceklerin gosterildi tablo copmonent  */}
             <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks} />
@@ -111,9 +128,6 @@ const CheckScanPage = () => {
                     <Overlay setIsCheckView={setIsCheckView} isCheckView={isCheckView} />
                 </>
             }
-
-
-
 
         </main>
     );
