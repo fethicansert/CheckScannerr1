@@ -6,8 +6,7 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
     const [isDisabledButtonPrevious, setDisableButtonPrevious] = useState(false);
     const [isDisabledButtonNext, setDisableButtonNext] = useState(false);
 
-    console.log(`${checkIndex} check index`);
-    console.log(`${scannedChecks.length} length`);
+
     const style = {
         opacity: isDisabledButtonPrevious ?  '0.6' : '1'
     }
@@ -17,21 +16,20 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
     }
 
     useEffect(() => {
-        console.log(checkIndex);
         if(checkIndex < 1){
             setDisableButtonPrevious(true);
         }else{
             setDisableButtonPrevious(false);
         }
-    },[checkIndex]);
+    },[checkIndex, scannedChecks]);
 
     useEffect(() => {
-        if(checkIndex + 1 === scannedChecks.length || scannedChecks.length < 1){
+        if(checkIndex + 1 === scannedChecks.length ){
             setDisableButtonNext(true)
         }else{
             setDisableButtonNext(false)
         };
-    },[checkIndex]);
+    },[checkIndex, scannedChecks]);
 
     const previousCheck = () => {
         if(!isDisabledButtonPrevious){
@@ -72,10 +70,20 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
                     className="check-image-button">
                     Önceki Çek
                 </button>
-                <button onClick={showCheckImage} className="check-image-button view-check-button">Çeki Göster</button>
+
+                <button 
+                    onClick={showCheckImage} 
+                    className="check-image-button view-check-button">
+                    Çeki Göster
+                </button>
+
                 <button 
                     style={style1} 
-                    disabled={isDisabledButtonNext} onClick={nextCheck} className="check-image-button">Sonraki Çek</button>
+                    disabled={isDisabledButtonNext} 
+                    onClick={nextCheck} 
+                    className="check-image-button">
+                    Sonraki Çek
+                </button>
             </div>
 
         </div>

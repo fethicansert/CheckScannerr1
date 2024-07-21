@@ -53,14 +53,13 @@ const CheckScanPage = () => {
 
         setIsLoading(true); //isLoading true yukleme islemi baslatildi spinner-loading goster
 
-        setCheckSqeunce(checkSequnce + 1); //cek sirasi arttir
-
-        setCurrentCheck(newCurrentCheck); //data ya check sqeunce properitsi ekle
-
+        
         setTimeout(() => {  //spinner-loading 2500ms gozukmesi icin isLoading degerini 2500ms sonra false yap
+            setCheckSqeunce(checkSequnce + 1); //cek sirasi arttir
+            setCurrentCheck(newCurrentCheck); //data ya check sqeunce properitsi ekle
             setIsLoading(false);
             setScannedChecks([...scannedChecks, newCurrentCheck]);
-        }, 10);
+        }, 1000);
 
     };
 
