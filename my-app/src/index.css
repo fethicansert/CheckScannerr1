@@ -8,13 +8,13 @@
 
 body{
     font-family: "Montserrat", sans-serif;
-    min-width: 900px;
 }
 
 .container{
     height: 99vh;
     display: flex;
     flex-direction: column;
+    
 }
 
 .layout{
@@ -35,6 +35,13 @@ main{
     text-transform: capitalize;
 }
 
+
+@media (max-width: 930px) {
+    
+    .container{
+        height: 1400px;
+    }
+}
 
 
 

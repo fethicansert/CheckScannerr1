@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ScannerDetails from "./ScannerDetail";
 import CheckDetails from "./CheckDetails";
 import CheckImage from "./checkImage/CheckImage";
@@ -12,6 +12,8 @@ import Overlay from "./checkImage/Overlay";
 const CheckScanPage = () => {
 
     const checkData = checkDataz;
+
+    const [currentIndex, setCurrentIndex] = useState(0)
 
     //CheckView in gosterilip gosterilmeyecegini belirten state
     const [isCheckView, setIsCheckView] = useState(false);
@@ -27,7 +29,7 @@ const CheckScanPage = () => {
 
     //Ilk default cek icin data
     const [currentCheck, setCurrentCheck] = useState({
-        checkSequnce: '-',
+        checkSequnce: 0,
         routingNumber: '-',
         accountNumber: '-',
         checkNumber: '-',
@@ -35,6 +37,11 @@ const CheckScanPage = () => {
         checkImage: placeHolderImage
     });
 
+    useEffect(() => {
+        setCurrentIndex(currentCheck.checkSequnce - 1);
+    },[currentCheck])
+
+   
     const showCheckView = () => {
         setIsCheckView(!isCheckView);
     }
@@ -45,13 +52,16 @@ const CheckScanPage = () => {
         const newCurrentCheck = { ...checkData[randomNum], checkSequnce: checkSequnce + 1 };
 
         setIsLoading(true); //isLoading true yukleme islemi baslatildi spinner-loading goster
+
         setCheckSqeunce(checkSequnce + 1); //cek sirasi arttir
+
         setCurrentCheck(newCurrentCheck); //data ya check sqeunce properitsi ekle
 
         setTimeout(() => {  //spinner-loading 2500ms gozukmesi icin isLoading degerini 2500ms sonra false yap
             setIsLoading(false);
             setScannedChecks([...scannedChecks, newCurrentCheck]);
-        }, 1000);
+        }, 10);
+
     };
 
 
@@ -80,7 +90,14 @@ const CheckScanPage = () => {
             </div>
 
             {/* Cek resminin ortalama bir boyutta gosterildigi copmonent  */}
-            <CheckImage isLoading={isLoading} checkImage={currentCheck.checkImage} showCheckImage={showCheckView} />
+            <CheckImage 
+                isLoading={isLoading} 
+                checkImage={currentCheck.checkImage} 
+                showCheckImage={showCheckView} 
+                setCurrentCheck={setCurrentCheck} 
+                scannedChecks={scannedChecks}
+                checkIndex={currentIndex}
+            /> 
 
             {/* Okunmus ceklerin gosterildi tablo copmonent  */}
             <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks} />

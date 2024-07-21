@@ -38,6 +38,7 @@
 
 
 .scanner-details{
+    width: 100%;
     height: 30%;
     display: flex;
     flex-direction: column;
@@ -68,6 +69,7 @@ h3{
 }
 
 .check-image-container{
+    width: 100%;
     height: 100%;
     position: relative;
     justify-content: space-between;
@@ -212,19 +214,45 @@ tr:hover{
     opacity: 0.9;
 }
 
-
+.view-check-button{
+    padding: .4rem 2rem;
+    background: green;
+}
 
 
 @media (max-width: 1000px) {
-
     .check-detail-labels-container{
         margin-top: .4rem;
     }
+}
 
+@media (max-width: 1500px) {
     .check-image{
         max-height: 200px;
     }
 }
+
+@media (max-width: 930px) {
+    
+    .check-scan-page{
+        grid-template-columns: 1fr ;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+  
+    .check-scan-page-grid-flex-box{
+        grid-column:  1 / 3;
+    }
+
+    .check-image{
+        max-height: none;
+    }
+  
+}
+
+
+
+
 
 
 
