@@ -4,7 +4,7 @@ import  checkImage3  from '../images/check3.jpeg';
 import  checkImage4 from '../images/check4.jpeg';
 
 
-const checkDataz = [
+const fakeCheckData = [
     {
         
         routingNumber: 1805360,
@@ -37,4 +37,4 @@ const checkDataz = [
     },
 ];
 
-export default checkDataz;
+export default fakeCheckData;

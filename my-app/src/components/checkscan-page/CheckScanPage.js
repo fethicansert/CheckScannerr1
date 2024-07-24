@@ -6,12 +6,20 @@ import ScannedChecks from "./scanned-checks/ScannedChecks";
 import placeHolderImage from '../../images/placeholder-image.png';
 import CheckView from "./checkImage/CheckView";
 
-import checkDataz from "../../data/checkdata";
+import fakeCheckData from "../../data/checkdata";
 import Overlay from "./checkImage/Overlay";
+
+import useAuth from "../../hooks.js/useAuth";
 
 const CheckScanPage = () => {
 
-    const checkData = checkDataz;
+    const { auth } = useAuth();
+    
+    const checkData = fakeCheckData;
+
+    const checkSequnceReverse = useRef(false);
+
+    const checkAmountReverse = useRef(false);
 
     //Tablo daki indexi tutabilmek currentIndex degeri
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -39,13 +47,20 @@ const CheckScanPage = () => {
         isActive: false
     });
 
-    ///current check degistiginde currentIndex de degisecek
+    ///currentCheck her degistiginde currentIndex de degisecek
     useEffect(() => {
-        setCurrentIndex(currentCheck.checkSequnce - 1);
-    }, [currentCheck])
+        let currentindex;
+        scannedChecks.forEach((item, index) => {
+            if (item.checkSequnce === currentCheck.checkSequnce) {
+                currentindex = index;
+            }
+        });
+        setCurrentIndex(currentindex);
+    }, [currentCheck, scannedChecks])
 
-    //current check degistiginde current check isActive true geri kalanlar false olacak
+    //currentcheck her degistiginde currentcheck isActive(seçilmiş çek) true geri kalanlar false olacak
     useEffect(() => {
+
         const updatedChecks = scannedChecks.map(check => {
             if (check.checkSequnce === currentCheck.checkSequnce) {
                 check.isActive = true
@@ -59,77 +74,88 @@ const CheckScanPage = () => {
 
     }, [currentCheck]);
 
+    //cekin ekranin ortasinda buyuk bir sekilde gozukmesi
     const showCheckView = () => {
         setIsCheckView(!isCheckView);
     }
 
-    //Cek okunurmus gibi yapmasi icin fonksiyon
+    //Cek okunma taklidi yap
     const checkScan = () => {
         const randomNum = Math.floor(Math.random() * 4);
         const newCurrentCheck = { ...checkData[randomNum], checkSequnce: checkSequnce + 1, isActive: false };
 
         setIsLoading(true); //isLoading true yukleme islemi baslatildi spinner-loading goster
 
-
         setTimeout(() => {  //spinner-loading 2500ms gozukmesi icin isLoading degerini 2500ms sonra false yap
             setCheckSqeunce(checkSequnce + 1); //cek sirasi arttir
             setCurrentCheck(newCurrentCheck); //data ya check sqeunce properitsi ekle
             setIsLoading(false);
-            setScannedChecks([...scannedChecks, newCurrentCheck]);
+            if (!checkSequnceReverse.current) {
+                setScannedChecks([...scannedChecks, newCurrentCheck]);
+            } else {
+                setScannedChecks([newCurrentCheck, ...scannedChecks,]);
+            }
+
         }, 1000);
 
     };
-
 
     const setCurrentCheckFromRow = (rowCheckData) => {
         setCurrentCheck(rowCheckData);
     };
 
-
     return (
-        <main className="check-scan-page">
+        <div className="wrapper">
+            <main className="check-scan-page">
 
-            <div className="check-scan-page-grid-flex-box check-scan-page-grid-item">
-                {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
-                <ScannerDetails checkScan={checkScan} scannedCheckCount={checkSequnce} />
 
-                {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
-                <CheckDetails
+                <div className="check-scan-page-grid-flex-box check-scan-page-grid-item">
+                    {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
+                    <ScannerDetails checkScan={checkScan} scannedCheckCount={checkSequnce} />
+
+                    {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
+                    <CheckDetails
+                        isLoading={isLoading}
+                        checksequence={currentCheck.checkSequnce}
+                        routingNumber={currentCheck.routingNumber}
+                        accountNumber={currentCheck.accountNumber}
+                        checkNumber={currentCheck.checkNumber}
+                        checkAmount={currentCheck.checkAmount}
+                    />
+
+                </div>
+
+                {/* Cek resminin ortalama bir boyutta gosterildigi copmonent  */}
+                <CheckImage
                     isLoading={isLoading}
-                    checksequence={currentCheck.checkSequnce}
-                    routingNumber={currentCheck.routingNumber}
-                    accountNumber={currentCheck.accountNumber}
-                    checkNumber={currentCheck.checkNumber}
-                    checkAmount={currentCheck.checkAmount}
+                    checkImage={currentCheck.checkImage}
+                    showCheckImage={showCheckView}
+                    setCurrentCheck={setCurrentCheck}
+                    scannedChecks={scannedChecks}
+                    checkIndex={currentIndex}
                 />
 
-            </div>
-
-            {/* Cek resminin ortalama bir boyutta gosterildigi copmonent  */}
-            <CheckImage
-                isLoading={isLoading}
-                checkImage={currentCheck.checkImage}
-                showCheckImage={showCheckView}
-                setCurrentCheck={setCurrentCheck}
-                scannedChecks={scannedChecks}
-                checkIndex={currentIndex}
-            />
-
-            {/* Okunmus ceklerin gosterildi tablo copmonent  */}
-            <ScannedChecks setCurrentCheck={setCurrentCheckFromRow} scannedChecks={scannedChecks} />
+                {/* Okunmus ceklerin gosterildi tablo copmonent  */}
+                <ScannedChecks
+                    checkSequnceReverse={checkSequnceReverse}
+                    setCurrentCheck={setCurrentCheckFromRow}
+                    scannedChecks={scannedChecks}
+                    setScannedChecks={setScannedChecks}
+                />
 
 
-            {/* Overlay copmonent  arka tarafi gölgelendirecek 
+                {/* Overlay copmonent  arka tarafi gölgelendirecek 
                 CheckView copmonent  ceki daha buyuk boyutta ekranin ortasinda gosterecek */}
-            {
-                isCheckView &&
-                <>
-                    <CheckView checkImage={currentCheck.checkImage} />
-                    <Overlay setIsCheckView={setIsCheckView} isCheckView={isCheckView} />
-                </>
-            }
+                {
+                    isCheckView &&
+                    <>
+                        <CheckView checkImage={currentCheck.checkImage} />
+                        <Overlay setIsCheckView={setIsCheckView} isCheckView={isCheckView} />
+                    </>
+                }
 
-        </main>
+            </main>
+        </div>
     );
 }
 

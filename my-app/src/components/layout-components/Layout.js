@@ -6,8 +6,11 @@ import { Outlet, Route } from 'react-router-dom';
 const Layout = ({children}) => {
   return (
     <div className='layout'>
+
       <Sidebar />
+
       <Outlet />
+      
     </div>
   )
 }

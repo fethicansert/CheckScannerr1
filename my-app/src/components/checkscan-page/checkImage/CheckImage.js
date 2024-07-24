@@ -16,20 +16,25 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
     }
 
     useEffect(() => {
-        if(checkIndex < 1){
+
+        if(checkIndex < 1 || scannedChecks.length === 0){
             setDisableButtonPrevious(true);
         }else{
             setDisableButtonPrevious(false);
         }
+
     },[checkIndex, scannedChecks]);
 
     useEffect(() => {
-        if(checkIndex + 1 === scannedChecks.length ){
+
+        if(checkIndex + 1 === scannedChecks.length || scannedChecks.length === 0){
             setDisableButtonNext(true)
         }else{
             setDisableButtonNext(false)
         };
+
     },[checkIndex, scannedChecks]);
+
 
     const previousCheck = () => {
         if(!isDisabledButtonPrevious){
@@ -45,7 +50,8 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
 
     return (
         <div className="check-image-container">
-            <h3>Çek Resmi</h3>
+
+            <h3 className="check-scan-page-sub-title">Çek Resmi</h3>
 
             {
                 !isLoading
@@ -62,18 +68,18 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
                     />
             }
 
-            <div className="check-image-flex">
+            <div className="check-image-buttons-container">
                 <button 
                     style={style}
                     disabled={isDisabledButtonPrevious} 
                     onClick={previousCheck} 
-                    className="check-image-button">
+                    className="check-scan-button">
                     Önceki Çek
                 </button>
 
                 <button 
                     onClick={showCheckImage} 
-                    className="check-image-button view-check-button">
+                    className="check-scan-button view-check-button">
                     Çeki Göster
                 </button>
 
@@ -81,7 +87,7 @@ const CheckImage = ({ checkImage, isLoading, showCheckImage, setCurrentCheck, sc
                     style={style1} 
                     disabled={isDisabledButtonNext} 
                     onClick={nextCheck} 
-                    className="check-image-button">
+                    className="check-scan-button">
                     Sonraki Çek
                 </button>
             </div>
