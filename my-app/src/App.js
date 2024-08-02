@@ -3,14 +3,17 @@ import Header from "./components/layout-components/Header";
 import Layout from "./components/layout-components/Layout";
 import { Route, Routes } from "react-router-dom";
 import CheckScanPage from "./components/checkscan-page/CheckScanPage";
-import LoginPage from "./components/login-page/LoginPage";
+import Permissions from './components/permissions-page/Permissions'
 import AddUserPage from "./components/adduser-page/AddUserPage"
 import Count from "./components/Count";
+
+
 
 import './css/check-scan-page.css'
 import './css/header.css';
 import './css/sidebar.css'
 import './css/forbiden-page.css'
+import './css/permissions.css'
 
 import DataManagementPage from "./components/datamanagement-page/DataManagementPage";
 import UserListPage from "./components/userlist-page/UserListPage";
@@ -36,7 +39,7 @@ function App() {
 
         <Routes>
 
-          <Route index path="/" element={<LoginPage />} />
+          <Route index path="/" element={<Permissions />} />
 
           <Route element={<RequireAuth allowedRoles={[ROLES.admin, ROLES.manager, ROLES.user]} />}>
 

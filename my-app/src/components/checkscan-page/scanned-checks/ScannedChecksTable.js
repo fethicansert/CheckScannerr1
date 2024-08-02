@@ -6,8 +6,6 @@ import { FaArrowUp } from "react-icons/fa6";
 
 const ScannedChecksTable = ({ scannedChecks, setCurrentCheck, setScannedChecks, checkSequnceReverse }) => {
 
-
-
     const reverseCheckSequence = () => {
         setScannedChecks([...scannedChecks.reverse()]);
         checkSequnceReverse.current = !checkSequnceReverse.current;

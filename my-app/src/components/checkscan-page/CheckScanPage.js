@@ -9,17 +9,13 @@ import CheckView from "./checkImage/CheckView";
 import fakeCheckData from "../../data/checkdata";
 import Overlay from "./checkImage/Overlay";
 
-import useAuth from "../../hooks.js/useAuth";
+
 
 const CheckScanPage = () => {
 
-    const { auth } = useAuth();
-    
     const checkData = fakeCheckData;
 
     const checkSequnceReverse = useRef(false);
-
-    const checkAmountReverse = useRef(false);
 
     //Tablo daki indexi tutabilmek currentIndex degeri
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -106,12 +102,16 @@ const CheckScanPage = () => {
 
     return (
         <div className="wrapper">
-            <main className="check-scan-page">
 
+            <main className="check-scan-page">
 
                 <div className="check-scan-page-grid-flex-box check-scan-page-grid-item">
                     {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
-                    <ScannerDetails checkScan={checkScan} scannedCheckCount={checkSequnce} />
+                    <ScannerDetails
+                        checkScan={checkScan}
+                        scannedCheckCount={checkSequnce}
+                        isLoading={isLoading}
+                    />
 
                     {/* Cek Okunduktan sonra cek bilgilerinin bulundugu component */}
                     <CheckDetails
